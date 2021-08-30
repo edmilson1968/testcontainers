@@ -1,0 +1,40 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.2.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'br.com.itau.demo'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-amqp'
+	implementation 'mysql:mysql-connector-java'
+	implementation 'org.springframework.kafka:spring-kafka'
+
+
+	implementation platform('com.amazonaws:aws-java-sdk-bom:1.12.55')
+	implementation 'com.amazonaws:aws-java-sdk-s3'
+//	implementation platform('software.amazon.awssdk:bom:2.17.28')
+//	implementation ('software.amazon.awssdk:s3')
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation "org.testcontainers:mysql:1.16.0"
+	testImplementation "org.testcontainers:localstack:1.16.0"
+	testImplementation "org.testcontainers:rabbitmq:1.16.0"
+	testImplementation "org.testcontainers:kafka:1.16.0"
+
+	testCompile group: 'org.testcontainers', name: 'junit-jupiter', version: '1.15.3'
+}
+
+test {
+	useJUnitPlatform()
+}
